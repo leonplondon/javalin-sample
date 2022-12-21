@@ -1,0 +1,55 @@
+<configuration debug="true">
+  <if condition="${CONTAINER:-false}">
+    <then>
+      <variable resource="application.properties"/>
+      <variable resource="git.properties"/>
+      <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+          <providers>
+            <timestamp>
+              <fieldName>@</fieldName>
+              <timeZone>UTC</timeZone>
+            </timestamp>
+            <message/>
+            <nestedField>
+              <fieldName>mdc</fieldName>
+              <providers>
+                <mdc/>
+                <threadName/>
+                <loggerName>
+                  <shortenedLoggerNameLength>32</shortenedLoggerNameLength>
+                </loggerName>
+                <logLevel/>
+
+                <pattern>
+                  <omitEmptyFields>true</omitEmptyFields>
+                  <pattern>
+                    {
+                    "hostname": "${HOSTNAME}",
+                    "service": "${service}",
+                    "version": "${version}"
+                    }
+                  </pattern>
+                </pattern>
+              </providers>
+            </nestedField>
+          </providers>
+        </encoder>
+      </appender>
+    </then>
+    <else>
+      <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+          <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%kvp- %msg%n</pattern>
+        </encoder>
+      </appender>
+    </else>
+  </if>
+
+  <logger name="pro.darkgod" level="${MS_LOG_LEVEL:-info}"/>
+
+  <root level="${LOG_LEVEL:-trace}">
+    <appender-ref ref="STDOUT"/>
+  </root>
+
+</configuration>

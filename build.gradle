@@ -1,0 +1,54 @@
+plugins {
+  id 'org.jetbrains.kotlin.jvm' version '1.7.21'
+  id 'application'
+  id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+apply from: 'versions.gradle'
+
+group 'pro.darkgod'
+version '1.0'
+
+def mainClass = "pro.darkgod.MainKt"
+
+shadowJar {
+  zip64 true
+  archiveClassifier = 'uberjar'
+}
+
+application {
+  mainClassName = mainClass
+}
+
+jar {
+  manifest {
+    attributes 'Main-Class': mainClass
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: versions.kotlin.core
+  implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: versions.kotlin.coroutines
+  implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-slf4j', version: versions.kotlin.coroutines
+
+  implementation group: 'io.javalin', name: 'javalin', version: versions.javalin.core
+  implementation group: 'io.javalin', name: 'javalin-openapi', version: versions.javalin.core
+
+  implementation group: 'io.micrometer', name: 'micrometer-core', version: '1.9.4'
+  implementation group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.9.4'
+
+  implementation group: 'io.github.microutils', name: 'kotlin-logging', version: versions.logback.logging
+
+  implementation group: 'ch.qos.logback', name: 'logback-classic', version: versions.logback.core
+  implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: versions.logback.jsonEncoder
+  implementation group: 'org.codehaus.janino', name: 'janino', version: versions.logback.janino
+  implementation group: 'org.slf4j', name: 'slf4j-api', version: versions.logback.slf4j
+
+  implementation group: 'org.litote.kmongo', name: 'kmongo', version: versions.mongodb.kmongo
+
+  implementation 'org.apache.maven.plugins:maven-shade-plugin:3.4.1'
+}

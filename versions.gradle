@@ -1,0 +1,21 @@
+ext {
+  versions = [
+    javalin: [
+      core: '4.6.3',
+    ],
+    kotlin : [
+      core      : '1.7.21',
+      coroutines: '1.6.2',
+    ],
+    logback: [
+      core       : '1.4.5',
+      janino     : '3.1.9',
+      jsonEncoder: '7.2',
+      logging    : '3.0.4',
+      slf4j      : '2.0.3'
+    ],
+    mongodb: [
+      kmongo: '4.8.0',
+    ]
+  ]
+}
