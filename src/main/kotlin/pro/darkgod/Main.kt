@@ -3,15 +3,20 @@ package pro.darkgod
 import ConfigKey
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.path
-import pro.darkgod.modules.*
+import pro.darkgod.modules.AccessManager
+import pro.darkgod.modules.ControllerModule
+import pro.darkgod.modules.DatabaseModule
+import pro.darkgod.modules.DocumentationApi
+import pro.darkgod.modules.MetricsModule
+import pro.darkgod.modules.ServicesModule
 
 fun main() {
-  val servicesModule = ServicesModule.create()
+  val databaseModule = DatabaseModule.create()
+  val servicesModule = ServicesModule.create(databaseModule)
   val metricsModule = MetricsModule.create()
 
   val app = Javalin
     .create { config ->
-      // config.enableDevLogging()
       metricsModule.register(config)
       DocumentationApi.register(config)
       AccessManager.register(config)
@@ -26,4 +31,3 @@ fun main() {
   val port: Int = Config[ConfigKey.PORT, 8080]
   app.start(port)
 }
-

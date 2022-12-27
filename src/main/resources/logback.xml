@@ -47,6 +47,7 @@
   </if>
 
   <logger name="pro.darkgod" level="${MS_LOG_LEVEL:-info}"/>
+  <logger name="org.mongodb" level="${MONGO_LOG_LEVEL:-info}"/>
 
   <root level="${LOG_LEVEL:-trace}">
     <appender-ref ref="STDOUT"/>

@@ -8,15 +8,18 @@ import pro.darkgod.adapters.controllers.PersonController
 
 object ControllerModule {
 
-    fun create(metricsModule: MetricsModule, servicesModule: ServicesModule) {
-        path("/v1") {
-            HealthController().routes()
-            HelloController(metricsModule).routes()
-            PersonController(servicesModule.personService).routes()
-            MetricsController(metricsModule.prometheusMeterRegistry, metricsModule.simpleMeterRegistry).routes()
-        }
-        path("/v2") {
-            HealthController().routes()
-        }
+  fun create(metricsModule: MetricsModule, servicesModule: ServicesModule) {
+    path("/v1") {
+      HealthController().routes()
+      HelloController(metricsModule).routes()
+      PersonController(servicesModule.personService).routes()
+      MetricsController(
+        prometheusMeterRegistry = metricsModule.prometheusMeterRegistry,
+        simpleMeterRegistry = metricsModule.simpleMeterRegistry
+      ).routes()
     }
+    path("/v2") {
+      HealthController().routes()
+    }
+  }
 }

@@ -7,23 +7,23 @@ import io.javalin.plugin.openapi.dsl.document
 import io.javalin.plugin.openapi.dsl.documented
 
 class HealthController : Controller {
-    override fun routes() {
-        path("/health") {
-            get(documented(echoDoc, Companion::echo))
-        }
+  override fun routes() {
+    path("/health") {
+      get(documented(echoDoc, Companion::echo))
     }
+  }
 
-    companion object {
-        private val echoDoc = document()
-            .operation {
-                it.summary = "Just echoing everything tha comes"
-                it.description = "None"
-            }
-            .json<String>("200")
-            .queryParam<String>("name")
+  companion object {
+    private val echoDoc = document()
+      .operation {
+        it.summary = "Just echoing everything tha comes"
+        it.description = "None"
+      }
+      .json<String>("200")
+      .queryParam<String>("name")
 
-        private fun echo(ctx: Context) {
-            ctx.json("Health controller hit")
-        }
+    private fun echo(ctx: Context) {
+      ctx.json("Health controller hit")
     }
+  }
 }

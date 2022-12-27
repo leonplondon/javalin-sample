@@ -1,8 +1,9 @@
 package pro.darkgod.application.domain
 
-import java.util.*
+import org.bson.codecs.pojo.annotations.BsonId
+import java.util.UUID
 
 data class Person(
-    val id: UUID,
-    val name: String,
+  @BsonId val id: UUID,
+  val name: String,
 )

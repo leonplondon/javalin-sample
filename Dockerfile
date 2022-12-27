@@ -1,7 +1,7 @@
 FROM gradle:7.2.0-jdk11-alpine as builder
-RUN mkdir /build
-WORKDIR /build
+# RUN mkdir /build
 COPY --chown=gradle:gradle . /build
+WORKDIR /build
 RUN gradle shadowJar --no-daemon
 
 FROM gcr.io/distroless/java11-debian11:nonroot

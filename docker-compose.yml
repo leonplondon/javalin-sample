@@ -1,0 +1,29 @@
+networks:
+  backend:
+    name: backend
+    driver: bridge
+
+volumes:
+  database:
+
+services:
+  mongo:
+    image: mongo:5.0
+    networks:
+      - backend
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - database:/data/db
+
+#  server:
+#    build:
+#      context: .
+#    depends_on:
+#      - mongo
+#    networks:
+#      - backend
+#    ports:
+#      - "8080:8080"
+#    restart: always

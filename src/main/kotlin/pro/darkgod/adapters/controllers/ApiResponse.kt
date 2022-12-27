@@ -1,13 +1,13 @@
 package pro.darkgod.adapters.controllers
 
 import java.time.ZonedDateTime
-import java.util.*
+import java.util.UUID
 
-data class ApiResponse<T>(
-    val data: T,
-    val status: Int,
-    val timestamp: ZonedDateTime,
-    val traceId: UUID,
+data class ApiResponse<out T>(
+  val data: T,
+  val status: Int,
+  val timestamp: ZonedDateTime = ZonedDateTime.now(),
+  val traceId: UUID = UUID.randomUUID(),
 )
 
-fun <T> T.asResponse(): ApiResponse<T> = ApiResponse(this, 200, ZonedDateTime.now(), UUID.randomUUID())
+fun <T> T.asSuccessResponse(): ApiResponse<T> = ApiResponse(this, 200)

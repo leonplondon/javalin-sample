@@ -1,21 +1,21 @@
-//package pro.darkgod.coroutines
+// package pro.darkgod.coroutines
 //
-//import kotlinx.coroutines.*
-//import kotlinx.coroutines.slf4j.MDCContext
-//import mu.KotlinLogging
-//import java.util.*
-//import kotlin.time.ExperimentalTime
-//import kotlin.time.measureTime
+// import kotlinx.coroutines.*
+// import kotlinx.coroutines.slf4j.MDCContext
+// import mu.KotlinLogging
+// import java.util.*
+// import kotlin.time.ExperimentalTime
+// import kotlin.time.measureTime
 //
-//val logger = KotlinLogging.logger { }
+// val logger = KotlinLogging.logger { }
 //
-//data class Settings(var settingsMap: Map<String, Boolean> = emptyMap()) {
+// data class Settings(var settingsMap: Map<String, Boolean> = emptyMap()) {
 //    fun test(value: String) {}
-//}
+// }
 //
-//data class Person(val name: String, val lastName: String, val settings: Settings)
+// data class Person(val name: String, val lastName: String, val settings: Settings)
 //
-//suspend fun getPersonById(id: UUID): Person? {
+// suspend fun getPersonById(id: UUID): Person? {
 //    val person = Person("dario", "pena", Settings())
 //
 //    coroutineScope {}
@@ -25,13 +25,13 @@
 //    } else {
 //        person
 //    }
-//}
+// }
 //
-//fun Int.secToMillis(): Long {
+// fun Int.secToMillis(): Long {
 //    return this * 1_000L
-//}
+// }
 //
-//suspend fun suspendFunction(character: String, times: Int = 1): String {
+// suspend fun suspendFunction(character: String, times: Int = 1): String {
 //    delay(times.secToMillis())
 //
 //    logger.info { "suspendFunction" }
@@ -41,10 +41,10 @@
 //        logger.info { value }
 //        return value
 //    }
-//}
+// }
 //
-//@OptIn(DelicateCoroutinesApi::class)
-//suspend fun testContext() {
+// @OptIn(DelicateCoroutinesApi::class)
+// suspend fun testContext() {
 //    val context = newFixedThreadPoolContext(
 //        nThreads = 10, "custom-thread-pool"
 //    )
@@ -53,15 +53,15 @@
 //        val mdcContext = coroutineContext[MDCContext]
 //        logger.info { "Test context inside custom thread pool" }
 //    }
-//}
+// }
 //
-//val coroutineExceptionHandler = CoroutineExceptionHandler { ctx, throwable ->
+// val coroutineExceptionHandler = CoroutineExceptionHandler { ctx, throwable ->
 //    println("Hit to coroutineException handler; ctx: $ctx; error: $throwable")
 //    println(throwable.printStackTrace())
-//}
+// }
 //
-//@OptIn(ExperimentalTime::class)
-//fun main2() = runBlocking(context = coroutineExceptionHandler) {
+// @OptIn(ExperimentalTime::class)
+// fun main2() = runBlocking(context = coroutineExceptionHandler) {
 //    val supervisorJob = SupervisorJob()
 //
 //    val scope = CoroutineScope(
@@ -129,9 +129,9 @@
 //    }
 //
 //    delay(15.secToMillis())
-//}
+// }
 //
-//private suspend fun createCoroutineSupervised(delaySecs: Int, error: Exception? = null) {
+// private suspend fun createCoroutineSupervised(delaySecs: Int, error: Exception? = null) {
 //    delay(delaySecs.secToMillis())
 //    error?.let { throw it }
-//}
+// }
